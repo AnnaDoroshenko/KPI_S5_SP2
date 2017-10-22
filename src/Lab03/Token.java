@@ -7,6 +7,7 @@ public class Token {
 
     private TokenName tokenName;
     private String tokenValue;
+    List<Token> result = new ArrayList<Token>();
 
     public Token() {
 
@@ -31,39 +32,18 @@ public class Token {
                 tokenName = TokenName.KEYWORD;
                 break;
 
-//            case "n":
-//                tokenName = TokenName.IDENTIFIER;
-//                break;
-//
-//            case "0":
-//                tokenName = TokenName.LITERAL;
-//                break;
-//
-//            case "1":
-//                tokenName = TokenName.LITERAL;
-//                break;
-//
-//            case ":=":
-//                tokenName = TokenName.ASSIGN;
-//                break;
-//
-//            case "!=":
-//                tokenName = TokenName.NOT_EQUAL;
-//                break;
-
             default:
                 if (Character.isLetter(string.charAt(0))) {
                     tokenName = TokenName.IDENTIFIER;
                 } else {
                     for (int i = 1; i < string.length(); i++) {
                         if (Character.isLetter(i)) {
-                            System.out.println("Error: invalid input of literal in " + string);
+                            System.err.println("Error: invalid input of literal in " + string);
+                            System.exit(-1);
                         }
                     }
                     tokenName = TokenName.LITERAL;
                 }
-
-//                tokenName = TokenName.IDENTIFIER;
         }
 
         return tokenName;
@@ -87,11 +67,10 @@ public class Token {
 
 
     public List<Token> getListOfTokens(String input) {
-        List<Token> result = new ArrayList<Token>();
         for (int i = 0; i < input.length(); ) {
             switch (input.charAt(i)) {
                 case '-':
-                    result.add(new Token(TokenName.SUB, "-"));
+                    result.add(new Token(TokenName.SUBTRACTION, "-"));
                     i++;
                     break;
 
@@ -125,8 +104,28 @@ public class Token {
                     i++;
                     break;
 
+                case ':':
+                    if(input.charAt(i + 1) == '='){
+                        result.add(new Token(TokenName.ASSIGN, ":="));
+                        i += 2;
+                    } else {
+                        System.err.println("Error: unknown operator at " + i );
+                        System.exit(-1);
+                    }
+                    break;
+
+                case '!':
+                    if(input.charAt(i + 1) == '='){
+                        result.add(new Token(TokenName.NOT_EQUAL, "!="));
+                        i += 2;
+                    } else {
+                        System.err.println("Error: unknown operator at " + i );
+                        System.exit(-1);
+                    }
+                    break;
+
                 default:
-                    if (Character.isWhitespace(input.charAt(i))) {
+                    if (input.charAt(i) == ' ') {
                         i++;
                     } else {
                         String atom = getAtom(input, i);
@@ -142,7 +141,11 @@ public class Token {
 
     @Override
     public String toString() {
-        return tokenName.name() + " :: " + tokenValue;
+        return tokenValue + " :: " + tokenName.name();
     }
+
+//    public Token selectDirect(int index) {
+//        return result.get(index);
+//    }
 }
 

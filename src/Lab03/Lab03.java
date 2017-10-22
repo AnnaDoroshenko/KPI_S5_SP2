@@ -20,33 +20,41 @@ public class Lab03 {
         Token expression = new Token();
         List<Token> listOfTokens;
 
-        listOfTokens = expression.getListOfTokens("repeat n=5+anka5");
-//        listOfTokens = expression.getListOfTokens("repeat n:=n-1 until (n=0 or b!=a[n]);");
+        listOfTokens = expression.getListOfTokens("repeat n:=n-1 until (n=0 or b!=a[n]);");
 
-//        expression.add(new Token(TokenName.KEYWORD, "repeat"));
-//        expression.add(new Token(TokenName.IDENTIFIER, "n"));
-//        expression.add(new Token(TokenName.ASSIGN, ":="));
-//        expression.add(new Token(TokenName.IDENTIFIER, "n"));
-//        expression.add(new Token(TokenName.SUB, "-"));
-//        expression.add(new Token(TokenName.LITERAL, "1"));
-//        expression.add(new Token(TokenName.KEYWORD, "until"));
-//        expression.add(new Token(TokenName.LEFT_PARENTHESIS, "("));
-//        expression.add(new Token(TokenName.IDENTIFIER, "n"));
-//        expression.add(new Token(TokenName.EQUAL, "="));
-//        expression.add(new Token(TokenName.LITERAL, "0"));
-//        expression.add(new Token(TokenName.KEYWORD, "or"));
-//        expression.add(new Token(TokenName.IDENTIFIER, "b"));
-//        expression.add(new Token(TokenName.NOT_EQUAL, "!="));
-//        expression.add(new Token(TokenName.IDENTIFIER, "a"));
-//        expression.add(new Token(TokenName.LEFT_BRACKET, "["));
-//        expression.add(new Token(TokenName.IDENTIFIER, "n"));
-//        expression.add(new Token(TokenName.RIGHT_BRACKET, "]"));
-//        expression.add(new Token(TokenName.RIGHT_PARENTHESIS, ")"));
-//        expression.add(new Token(TokenName.SEMICOLON, ";"));
+        System.out.println(select(listOfTokens, 2));
 
-        for(Token t : listOfTokens){
+        insert(listOfTokens, new Token(TokenName.COLON, ":"), 2);
+
+        for (Token t : listOfTokens) {
+            System.out.println(t);
+        }
+
+        update(listOfTokens, new Token(TokenName.COMMA, ","), 2);
+
+        for (Token t : listOfTokens) {
             System.out.println(t);
         }
     }
 
+    public static Token select(List<Token> tokens, int index) {
+        return tokens.get(index);
+    }
+
+    public static void insert(List<Token> tokens, Token token, int index) {
+        final int sizeOfList = tokens.size();
+        if (index > sizeOfList) {
+            return;
+        }
+        tokens.add(index, token);
+    }
+
+    public static void update(List<Token> tokens, Token token, int index) {
+        final int sizeOfList = tokens.size();
+        if (index >= sizeOfList) {
+            return;
+        } else {
+            tokens.set(index, token);
+        }
+    }
 }
