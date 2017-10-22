@@ -8,7 +8,7 @@ public class Token {
     private TokenName tokenName;
     private String tokenValue;
 
-    public Token(){
+    public Token() {
 
     }
 
@@ -17,43 +17,53 @@ public class Token {
         this.tokenValue = tokenValue;
     }
 
-    public TokenName defineToken(String string){
+    public TokenName defineToken(String string) {
         switch (string) {
             case "repeat":
                 tokenName = TokenName.KEYWORD;
-            break;
+                break;
 
             case "until":
                 tokenName = TokenName.KEYWORD;
-            break;
+                break;
 
             case "or":
                 tokenName = TokenName.KEYWORD;
                 break;
 
-            case "n":
-                tokenName = TokenName.IDENTIFIER;
-                break;
-
-            case "0":
-                tokenName = TokenName.LITERAL;
-                break;
-
-            case "1":
-                tokenName = TokenName.LITERAL;
-                break;
-
-            case ":=":
-                tokenName = TokenName.ASSIGN;
-                break;
-
-            case "!=":
-                tokenName = TokenName.NOT_EQUAL;
-                break;
+//            case "n":
+//                tokenName = TokenName.IDENTIFIER;
+//                break;
+//
+//            case "0":
+//                tokenName = TokenName.LITERAL;
+//                break;
+//
+//            case "1":
+//                tokenName = TokenName.LITERAL;
+//                break;
+//
+//            case ":=":
+//                tokenName = TokenName.ASSIGN;
+//                break;
+//
+//            case "!=":
+//                tokenName = TokenName.NOT_EQUAL;
+//                break;
 
             default:
-                tokenName = TokenName.IDENTIFIER;
-                break;
+                if (Character.isLetter(string.charAt(0))) {
+                    tokenName = TokenName.IDENTIFIER;
+                } else {
+                    for (int i = 1; i < string.length(); i++) {
+                        if (Character.isLetter(i)) {
+                            System.out.println("Error: invalid input of literal in " + string);
+                        }
+                    }
+                    tokenName = TokenName.LITERAL;
+                }
+
+//                tokenName = TokenName.IDENTIFIER;
         }
 
         return tokenName;

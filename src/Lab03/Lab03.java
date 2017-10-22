@@ -20,7 +20,8 @@ public class Lab03 {
         Token expression = new Token();
         List<Token> listOfTokens;
 
-        listOfTokens = expression.getListOfTokens("repeat n:=n-1 until (n=0 or b!=a[n]);");
+        listOfTokens = expression.getListOfTokens("repeat n=5+anka5");
+//        listOfTokens = expression.getListOfTokens("repeat n:=n-1 until (n=0 or b!=a[n]);");
 
 //        expression.add(new Token(TokenName.KEYWORD, "repeat"));
 //        expression.add(new Token(TokenName.IDENTIFIER, "n"));
