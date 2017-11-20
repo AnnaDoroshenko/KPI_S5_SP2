@@ -9,13 +9,19 @@ public class Token {
     private String tokenValue;
     List<Token> result = new ArrayList<Token>();
 
-    public Token() {
-
-    }
+    public Token() {}
 
     public Token(TokenName tokenName, String tokenValue) {
         this.tokenName = tokenName;
         this.tokenValue = tokenValue;
+    }
+
+    public String getTokenValue() {
+        return tokenValue;
+    }
+
+    public TokenName getTokenName() {
+        return tokenName;
     }
 
     public TokenName defineToken(String string) {
@@ -36,13 +42,15 @@ public class Token {
                 if (Character.isLetter(string.charAt(0))) {
                     tokenName = TokenName.IDENTIFIER;
                 } else {
+                    tokenName = TokenName.LITERAL;
+
                     for (int i = 1; i < string.length(); i++) {
-                        if (Character.isLetter(i)) {
+                        if (Character.isLetter(string.charAt(i))) {
                             System.err.println("Error: invalid input of literal in " + string);
-                            System.exit(-1);
+                            tokenName = TokenName.UNDEFINED;
+                            break;
                         }
                     }
-                    tokenName = TokenName.LITERAL;
                 }
         }
 
@@ -124,13 +132,27 @@ public class Token {
                     }
                     break;
 
+                case '>':
+                    result.add(new Token(TokenName.SYMBOL_MORE, ">"));
+                    i++;
+                    break;
+
+                case '<':
+                    result.add(new Token(TokenName.SYMBOL_LESS, "<"));
+                    i++;
+                    break;
+
                 default:
                     if (input.charAt(i) == ' ') {
                         i++;
-                    } else {
+                    } else if (Character.isLetter(input.charAt(i)) || Character.isDigit(input.charAt(i))) {
                         String atom = getAtom(input, i);
                         i += atom.length();
                         result.add(new Token(defineToken(atom), atom));
+                    } else{
+                        System.err.println("Error: unknown operator at " + i );
+                        result.add(new Token(TokenName.UNDEFINED, "" + input.charAt(i)));
+                        i++;
                     }
                     break;
             }
@@ -143,9 +165,5 @@ public class Token {
     public String toString() {
         return tokenValue + " :: " + tokenName.name();
     }
-
-//    public Token selectDirect(int index) {
-//        return result.get(index);
-//    }
 }
 

@@ -20,17 +20,19 @@ public class Lab03 {
         Token expression = new Token();
         List<Token> listOfTokens;
 
-        listOfTokens = expression.getListOfTokens("repeat n:=n-1 until (n=0 or b!=a[n]);");
+        listOfTokens = expression.getListOfTokens("repeat n:=n-1 until (n=0 or b!=a4);");
 
-        System.out.println(select(listOfTokens, 2));
+//        System.out.println("----------------------------------------");
 
-        insert(listOfTokens, new Token(TokenName.COLON, ":"), 2);
-
-        for (Token t : listOfTokens) {
-            System.out.println(t);
-        }
-
-        update(listOfTokens, new Token(TokenName.COMMA, ","), 2);
+//        System.out.println(select(listOfTokens, 2));
+//
+//        insert(listOfTokens, new Token(TokenName.COLON, ":"), 2);
+//
+//        for (Token t : listOfTokens) {
+//            System.out.println(t);
+//        }
+//
+//        update(listOfTokens, new Token(TokenName.COMMA, ","), 2);
 
         for (Token t : listOfTokens) {
             System.out.println(t);
