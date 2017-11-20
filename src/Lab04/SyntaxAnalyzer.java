@@ -65,11 +65,12 @@ public class SyntaxAnalyzer {
             return true;
         }
         List<String> stack = new ArrayList<>();
-        for (Token token : listOfTokens) {
-            final String tokenValue = token.getTokenValue();
+        for (int i = 0; i < listOfTokens.size() - 1; ) {
+            final String tokenValue = listOfTokens.get(i).getTokenValue();
             switch (tokenValue) {
                 case ("repeat"):
                     stack.add("repeat");
+                    i++;
                     break;
 
                 case ("until"):
@@ -81,13 +82,14 @@ public class SyntaxAnalyzer {
                     if (!top.equals("repeat")) {
                         return false;
                     }
+                    i++;
                     break;
             }
 
-            final TokenName tokenName = token.getTokenName();
+            final TokenName tokenName = listOfTokens.get(i).getTokenName();
             switch (tokenName) {
                 case KEYWORD:
-                    switch (listOfTokens.listIterator().next().getTokenName()) {
+                    switch (listOfTokens.get(i + 1).getTokenName()) {
                         case IDENTIFIER:
                             break;
                         case LITERAL:
@@ -97,10 +99,11 @@ public class SyntaxAnalyzer {
                         default:
                             return false;
                     }
+                    i++;
                     break;
 
                 case IDENTIFIER:
-                    switch (listOfTokens.listIterator().next().getTokenName()) {
+                    switch (listOfTokens.get(i + 1).getTokenName()) {
                         case ASSIGN:
                             break;
                         case EQUAL:
@@ -118,9 +121,10 @@ public class SyntaxAnalyzer {
                         default:
                             return false;
                     }
+                    i++;
                     break;
                 case LITERAL:
-                    switch (listOfTokens.listIterator().next().getTokenName()) {
+                    switch (listOfTokens.get(i + 1).getTokenName()) {
                         case KEYWORD:
                             break;
                         case RIGHT_PARENTHESIS:
@@ -134,9 +138,10 @@ public class SyntaxAnalyzer {
                         default:
                             return false;
                     }
+                    i++;
                     break;
                 case LEFT_BRACKET:
-                    switch (listOfTokens.listIterator().next().getTokenName()) {
+                    switch (listOfTokens.get(i + 1).getTokenName()) {
                         case IDENTIFIER:
                             break;
                         case LITERAL:
@@ -144,9 +149,10 @@ public class SyntaxAnalyzer {
                         default:
                             return false;
                     }
+                    i++;
                     break;
                 case RIGHT_BRACKET:
-                    switch (listOfTokens.listIterator().next().getTokenName()) {
+                    switch (listOfTokens.get(i + 1).getTokenName()) {
                         case ASTERISK:
                             break;
                         case SUBTRACTION:
@@ -164,9 +170,10 @@ public class SyntaxAnalyzer {
                         default:
                             return false;
                     }
+                    i++;
                     break;
                 case LEFT_PARENTHESIS:
-                    switch (listOfTokens.listIterator().next().getTokenName()) {
+                    switch (listOfTokens.get(i + 1).getTokenName()) {
                         case IDENTIFIER:
                             break;
                         case LITERAL:
@@ -174,9 +181,10 @@ public class SyntaxAnalyzer {
                         default:
                             return false;
                     }
+                    i++;
                     break;
                 case RIGHT_PARENTHESIS:
-                    switch (listOfTokens.listIterator().next().getTokenName()) {
+                    switch (listOfTokens.get(i + 1).getTokenName()) {
                         case ASTERISK:
                             break;
                         case SUBTRACTION:
@@ -192,9 +200,10 @@ public class SyntaxAnalyzer {
                         default:
                             return false;
                     }
+                    i++;
                     break;
                 case SEMICOLON:
-                    switch (listOfTokens.listIterator().next().getTokenName()) {
+                    switch (listOfTokens.get(i + 1).getTokenName()) {
                         case IDENTIFIER:
                             break;
                         case LEFT_PARENTHESIS:
@@ -202,9 +211,10 @@ public class SyntaxAnalyzer {
                         default:
                             return false;
                     }
+                    i++;
                     break;
                 case ASTERISK:
-                    switch (listOfTokens.listIterator().next().getTokenName()) {
+                    switch (listOfTokens.get(i + 1).getTokenName()) {
                         case IDENTIFIER:
                             break;
                         case LITERAL:
@@ -214,9 +224,10 @@ public class SyntaxAnalyzer {
                         default:
                             return false;
                     }
+                    i++;
                     break;
                 case ASSIGN:
-                    switch (listOfTokens.listIterator().next().getTokenName()) {
+                    switch (listOfTokens.get(i + 1).getTokenName()) {
                         case IDENTIFIER:
                             break;
                         case LITERAL:
@@ -226,9 +237,10 @@ public class SyntaxAnalyzer {
                         default:
                             return false;
                     }
+                    i++;
                     break;
                 case SUBTRACTION:
-                    switch (listOfTokens.listIterator().next().getTokenName()) {
+                    switch (listOfTokens.get(i + 1).getTokenName()) {
                         case IDENTIFIER:
                             break;
                         case LITERAL:
@@ -238,9 +250,10 @@ public class SyntaxAnalyzer {
                         default:
                             return false;
                     }
+                    i++;
                     break;
                 case EQUAL:
-                    switch (listOfTokens.listIterator().next().getTokenName()) {
+                    switch (listOfTokens.get(i + 1).getTokenName()) {
                         case IDENTIFIER:
                             break;
                         case LITERAL:
@@ -250,9 +263,10 @@ public class SyntaxAnalyzer {
                         default:
                             return false;
                     }
+                    i++;
                     break;
                 case NOT_EQUAL:
-                    switch (listOfTokens.listIterator().next().getTokenName()) {
+                    switch (listOfTokens.get(i + 1).getTokenName()) {
                         case IDENTIFIER:
                             break;
                         case LITERAL:
@@ -262,8 +276,10 @@ public class SyntaxAnalyzer {
                         default:
                             return false;
                     }
+                    i++;
                     break;
                 default:
+                    i++;
             }
 
         }

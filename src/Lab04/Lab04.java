@@ -27,7 +27,8 @@ public class Lab04 {
 
         SyntaxAnalyzer syntaxAnalyzer = new SyntaxAnalyzer();
 
-        if (syntaxAnalyzer.analyseCorrectnessOfBrackets(listOfTokens) && syntaxAnalyzer.analyseCorrectnessOfNextToken(listOfTokens)) {
+        if (syntaxAnalyzer.analyseCorrectnessOfBrackets(listOfTokens)
+                && syntaxAnalyzer.analyseCorrectnessOfNextToken(listOfTokens)) {
             System.out.println("The statement is correct");
         } else {
             System.err.println("There is(are) mistake(-s) in the statement");
