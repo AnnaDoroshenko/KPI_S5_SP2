@@ -1,4 +1,4 @@
-package Lab03;
+package Lab05;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,43 +27,43 @@ public class Token {
     public TokenName defineToken(String string) {
         switch (string) {
             case "repeat":
-                tokenName = TokenName.KEYWORD;
+                tokenName = TokenName.KEYWORD_REPEAT;
                 break;
 
             case "until":
-                tokenName = TokenName.KEYWORD;
+                tokenName = TokenName.KEYWORD_UNTIL;
                 break;
 
             case "or":
-                tokenName = TokenName.KEYWORD;
+                tokenName = TokenName.KEYWORD_OR;
                 break;
 
             case "if":
-                tokenName = TokenName.KEYWORD;
+                tokenName = TokenName.KEYWORD_IF;
                 break;
 
             case "then":
-                tokenName = TokenName.KEYWORD;
+                tokenName = TokenName.KEYWORD_THEN;
                 break;
 
             case "begin":
-                tokenName = TokenName.KEYWORD;
+                tokenName = TokenName.KEYWORD_BEGIN;
                 break;
 
             case "end":
-                tokenName = TokenName.KEYWORD;
+                tokenName = TokenName.KEYWORD_END;
                 break;
 
             case "for":
-                tokenName = TokenName.KEYWORD;
+                tokenName = TokenName.KEYWORD_FOR;
                 break;
 
             case "to":
-                tokenName = TokenName.KEYWORD;
+                tokenName = TokenName.KEYWORD_TO;
                 break;
 
             case "do":
-                tokenName = TokenName.KEYWORD;
+                tokenName = TokenName.KEYWORD_DO;
                 break;
 
             default:

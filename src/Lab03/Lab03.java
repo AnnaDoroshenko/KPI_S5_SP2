@@ -20,7 +20,10 @@ public class Lab03 {
         Token expression = new Token();
         List<Token> listOfTokens;
 
-        listOfTokens = expression.getListOfTokens("repeat n:=n-1 until (n=0 or b!=a4);");
+//        listOfTokens = expression.getListOfTokens("repeat n:=n-1 until (n=0 or b!=a4);");
+//        listOfTokens = expression.getListOfTokens("If (a<b) then begin For t:=1 to p do begin a:=b; end; end;");
+
+        listOfTokens = expression.getListOfTokens("If (a<b) then ");
 
 //        System.out.println("----------------------------------------");
 

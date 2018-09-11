@@ -19,19 +19,25 @@ public class Lab04 {
 
     public static void main(String[] args) {
 
+        String input = "a:=n-1; b:=0; b:=n[an]";
         Token expression = new Token();
         List<Token> listOfTokens;
 
-//        listOfTokens = expression.getListOfTokens("n:=n-1; b:=0; a[n]");
-        listOfTokens = expression.getListOfTokens("a[n]");
+        listOfTokens = expression.getListOfTokens(input);
+
+//        for (Token token : listOfTokens) {
+//            System.out.println(token);
+//        }
+
+        System.out.println(input);
 
         SyntaxAnalyzer syntaxAnalyzer = new SyntaxAnalyzer();
 
         if (syntaxAnalyzer.analyseCorrectnessOfBrackets(listOfTokens)
                 && syntaxAnalyzer.analyseCorrectnessOfNextToken(listOfTokens)) {
-            System.out.println("The statement is correct");
+            System.out.println("\nInput is correct");
         } else {
-            System.err.println("There is(are) mistake(-s) in the statement");
+            System.out.println("\nInvalid input");
         }
     }
 }
